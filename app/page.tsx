@@ -755,7 +755,7 @@ export default function Home() {
             href="#order"
             className="inline-block bg-[#E8408A] text-white font-semibold px-10 py-4 rounded-full text-base hover:bg-[#d03578] transition-colors"
           >
-            اطلبي الآن &mdash; 99 درهم
+            اطلبي الآن &mdash; 109 درهم
           </a>
         </div>
       </section>
