@@ -1053,6 +1053,30 @@ export default function Home() {
                   </div>
                 )}
 
+                {/* ── Pack image ── */}
+                {offer === "pack" && (
+                  <div className="mb-8 rounded-2xl overflow-hidden relative" style={{ border: "1px solid rgba(232,64,138,0.2)", background: "rgba(232,64,138,0.04)" }}>
+                    <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
+                      <Image
+                        src={packOffer.image}
+                        alt="الباقة الكاملة"
+                        fill
+                        className="object-contain p-4"
+                        sizes="(max-width: 768px) 100vw, 480px"
+                      />
+                    </div>
+                    <div className="px-4 pb-4 flex items-center justify-between">
+                      <span className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        {packOffer.includes.join(" · ")}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs line-through" style={{ color: "rgba(255,255,255,0.25)" }}>{packOffer.originalPrice} درهم</span>
+                        <span className="font-bold text-base" style={{ color: "#E8408A" }}>{packOffer.price} درهم</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* ── Text fields ── */}
                 <div className="flex flex-col gap-4 mb-8">
                   {/* Name */}
