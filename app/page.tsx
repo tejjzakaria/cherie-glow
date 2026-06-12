@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { products, packOffer, ctaStrips, type Product } from "@/data/products";
 
@@ -22,6 +23,19 @@ function WaIcon({ className }: { className?: string }) {
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
       <path d="M12 0C5.373 0 0 5.373 0 12c0 2.13.553 4.13 1.521 5.873L0 24l6.335-1.502C8.056 23.459 10 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.84 0-3.591-.495-5.113-1.362l-.361-.215-3.762.893.925-3.653-.236-.376C2.55 15.685 2 13.91 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
     </svg>
+  );
+}
+
+function ErrorMsg({ msg }: { msg: string }) {
+  return (
+    <div className="flex items-center gap-1.5 mt-2 pr-1">
+      <svg viewBox="0 0 16 16" fill="none" style={{ width: 13, height: 13, flexShrink: 0 }}>
+        <circle cx="8" cy="8" r="7" stroke="#f87171" strokeWidth="1.5" />
+        <path d="M8 5v3.5" stroke="#f87171" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="8" cy="11" r="0.8" fill="#f87171" />
+      </svg>
+      <span style={{ color: "#f87171", fontSize: 12 }}>{msg}</span>
+    </div>
   );
 }
 
@@ -115,10 +129,11 @@ function HowToUse() {
 
   return (
     <section
+      id="how-to-use"
       dir="rtl"
       style={{ background: "#111111", borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 py-14 md:py-28">
         <p
           className="text-[11px] tracking-[6px] uppercase font-medium text-center mb-5"
           style={{ color: "#E8408A" }}
@@ -126,8 +141,8 @@ function HowToUse() {
           طريقة الاستخدام
         </p>
         <h2
-          className="font-bold text-white text-center mb-16 leading-tight"
-          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+          className="font-bold text-white text-center mb-10 md:mb-16 leading-tight"
+          style={{ fontSize: "clamp(30px, 5vw, 56px)" }}
         >
           ثلاث خطوات فقط
         </h2>
@@ -135,7 +150,7 @@ function HowToUse() {
           {steps.map((step) => (
             <div
               key={step.number}
-              className="rounded-2xl p-8 flex flex-col"
+              className="rounded-2xl p-6 md:p-8 flex flex-col"
               style={{
                 background: "rgba(255,255,255,0.02)",
                 border: "1px solid rgba(255,255,255,0.07)",
@@ -188,7 +203,7 @@ function Ingredients() {
       dir="rtl"
       style={{ background: "#0d0d0d", borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 py-14 md:py-28">
         <p
           className="text-[11px] tracking-[6px] uppercase font-medium text-center mb-5"
           style={{ color: "#E8408A" }}
@@ -197,11 +212,11 @@ function Ingredients() {
         </p>
         <h2
           className="font-bold text-white text-center mb-3 leading-tight"
-          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+          style={{ fontSize: "clamp(30px, 5vw, 56px)" }}
         >
           طبيعية 100%
         </h2>
-        <p className="text-center text-base mb-16" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <p className="text-center text-sm md:text-base mb-10 md:mb-16" style={{ color: "rgba(255,255,255,0.4)" }}>
           كلّ قطرة مصنوعة من خيرة المكوّنات الطبيعية — بدون كيماويات ضارة أو مواد حافظة اصطناعية
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -257,10 +272,11 @@ function FaqSection() {
 
   return (
     <section
+      id="faq"
       dir="rtl"
       style={{ background: "#111111", borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
-      <div className="max-w-3xl mx-auto px-6 py-20 md:py-28">
+      <div className="max-w-3xl mx-auto px-4 md:px-6 py-14 md:py-28">
         <p
           className="text-[11px] tracking-[6px] uppercase font-medium text-center mb-5"
           style={{ color: "#E8408A" }}
@@ -268,8 +284,8 @@ function FaqSection() {
           الأسئلة الشائعة
         </p>
         <h2
-          className="font-bold text-white text-center mb-14 leading-tight"
-          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+          className="font-bold text-white text-center mb-8 md:mb-14 leading-tight"
+          style={{ fontSize: "clamp(30px, 5vw, 56px)" }}
         >
           كلّ ما تودّين معرفته
         </h2>
@@ -336,8 +352,8 @@ function CtaStrip({ headline, subtext }: { headline: string; subtext?: string })
         className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6"
         dir="rtl"
       >
-        <div>
-          <p className="text-xl md:text-2xl font-semibold text-white">{headline}</p>
+        <div className="text-center md:text-right">
+          <p className="text-lg md:text-2xl font-semibold text-white">{headline}</p>
           {subtext && (
             <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
               {subtext}
@@ -384,13 +400,12 @@ function ProductSection({ product, index, onOrder }: ProductSectionProps) {
 
   return (
     <section
-      className="flex flex-col md:flex-row min-h-screen border-t border-white/[0.06]"
+      className="flex flex-col md:flex-row md:min-h-screen border-t border-white/[0.06]"
       style={{ direction: "ltr" }}
     >
-      {/* Image column */}
+      {/* Image column — always on top on mobile, alternates on desktop */}
       <div
-        className="relative overflow-hidden w-full md:w-[60%] min-h-[70vw] md:min-h-0"
-        style={{ order: imageOnLeft ? 1 : 2 }}
+        className={`relative overflow-hidden w-full md:w-[60%] min-h-[56vw] md:min-h-0 order-1 ${imageOnLeft ? "md:order-1" : "md:order-2"}`}
       >
         {/* Blurred lips as atmospheric background */}
         <Image
@@ -420,11 +435,11 @@ function ProductSection({ product, index, onOrder }: ProductSectionProps) {
         />
 
         {/* Bottle — fixed-size rounded card */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center px-5 py-4 md:p-0">
           <div
             className="relative overflow-hidden rounded-2xl"
             style={{
-              width: "min(80%, 540px)",
+              width: "min(100%, 540px)",
               aspectRatio: "4 / 3",
               boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
             }}
@@ -440,33 +455,39 @@ function ProductSection({ product, index, onOrder }: ProductSectionProps) {
         </div>
       </div>
 
-      {/* Text column */}
+      {/* Text column — always on bottom on mobile, alternates on desktop */}
       <div
-        className="flex flex-col justify-center w-full md:w-[40%] px-8 md:px-14 lg:px-20 py-16 md:py-0"
-        style={{ order: imageOnLeft ? 2 : 1, direction: "rtl" }}
+        className={`flex flex-col justify-center w-full md:w-[40%] px-6 md:px-14 lg:px-20 py-10 md:py-0 order-2 ${imageOnLeft ? "md:order-2" : "md:order-1"}`}
+        style={{ direction: "rtl" }}
       >
-        <p className="text-[11px] tracking-[5px] uppercase font-medium mb-8" style={{ color: "rgba(255,255,255,0.25)" }}>
+        <p className="text-[11px] tracking-[5px] uppercase font-medium mb-4 md:mb-8" style={{ color: "rgba(255,255,255,0.25)" }}>
           {String(index + 1).padStart(2, "0")} &mdash; {product.name}
         </p>
 
         <h2
-          className="font-bold text-white leading-none mb-6"
-          style={{ fontSize: "clamp(48px, 5.5vw, 80px)" }}
+          className="font-bold text-white leading-none mb-1"
+          style={{ fontSize: "clamp(40px, 5.5vw, 80px)" }}
         >
           {product.nameAr}
         </h2>
+        <p
+          className="text-xs md:text-sm font-semibold tracking-[3px] uppercase mb-4 md:mb-6"
+          style={{ color: "rgba(255,255,255,0.22)", direction: "ltr", textAlign: "right" }}
+        >
+          {product.name}
+        </p>
 
-        <div className="w-8 h-[2px] bg-[#E8408A] mb-7" />
+        <div className="w-8 h-[2px] bg-[#E8408A] mb-5 md:mb-7" />
 
-        <p className="text-lg md:text-xl font-semibold text-white leading-snug mb-4">
+        <p className="text-base md:text-xl font-semibold text-white leading-snug mb-3 md:mb-4">
           {product.tagline}
         </p>
 
-        <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
+        <p className="text-sm md:text-base leading-relaxed mb-5 md:mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
           {product.description}
         </p>
 
-        <ul className="space-y-2 mb-10">
+        <ul className="space-y-2 mb-6 md:mb-10">
           {product.highlights.map((item) => (
             <li key={item} className="flex items-center gap-3 text-sm font-semibold text-white">
               <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#E8408A" }} />
@@ -475,8 +496,8 @@ function ProductSection({ product, index, onOrder }: ProductSectionProps) {
           ))}
         </ul>
 
-        <div className="flex items-baseline gap-2 mb-8">
-          <span className="text-[42px] font-bold leading-none" style={{ color: "#E8408A" }}>
+        <div className="flex items-baseline gap-2 mb-6 md:mb-8">
+          <span className="text-4xl md:text-[42px] font-bold leading-none" style={{ color: "#E8408A" }}>
             {product.price}
           </span>
           <span className="text-base" style={{ color: "rgba(255,255,255,0.4)" }}>درهم</span>
@@ -513,37 +534,86 @@ function ProductSection({ product, index, onOrder }: ProductSectionProps) {
 }
 
 export default function Home() {
+  const router = useRouter();
   const [offer, setOffer] = useState<"single" | "pack">("single");
-  const [flavor, setFlavor] = useState("");
+  const [flavors, setFlavors] = useState<string[]>([]);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const toggleFlavor = (id: string) =>
+    setFlavors((prev) => prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]);
 
   const handleOrder = (productId: string) => {
     setOffer("single");
-    setFlavor(productId);
+    setFlavors((prev) => prev.includes(productId) ? prev : [...prev, productId]);
   };
 
   const handlePackOrder = () => {
     setOffer("pack");
-    setFlavor("");
+    setFlavors([]);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+
+    const newErrors: Record<string, string> = {};
+    if (offer === "single" && flavors.length === 0)
+      newErrors.flavors = "اختاري نكهة واحدة على الأقل";
+    if (!name.trim()) newErrors.name = "الاسم مطلوب";
+    if (!phone.trim()) newErrors.phone = "رقم الهاتف مطلوب";
+    if (!city.trim()) newErrors.city = "المدينة مطلوبة";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      const firstKey = Object.keys(newErrors)[0];
+      document.getElementById(`field-${firstKey}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    setErrors({});
+    const total = offer === "pack" ? packOffer.price : flavors.length * 99;
+    const selectedFlavors =
+      offer === "pack"
+        ? packOffer.includes.join(", ")
+        : products.filter((p) => flavors.includes(p.id)).map((p) => p.nameAr).join(", ");
+
+    try {
+      const payload = { offer, flavors: selectedFlavors, name, phone, city, total };
+      console.log("[order] submitting payload:", payload);
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      console.log("[order] response status:", res.status, "body:", data);
+    } catch (e) {
+      console.error("[order] fetch error:", e);
+    }
+
+    const qs = new URLSearchParams({
+      name,
+      flavors: selectedFlavors,
+      total: String(total),
+    });
+    router.push(`/thank-you?${qs.toString()}`);
   };
 
-  const fieldBox = (id: string): React.CSSProperties => ({
-    border: `1.5px solid ${focusedField === id ? "#E8408A" : "rgba(255,255,255,0.09)"}`,
+  const fieldBox = (id: string): React.CSSProperties => {
+    const hasError = !!errors[id];
+    const focused = focusedField === id;
+    return {
+    border: `1.5px solid ${hasError ? "#f87171" : focused ? "#E8408A" : "rgba(255,255,255,0.09)"}`,
     borderRadius: 14,
-    background: focusedField === id ? "rgba(232,64,138,0.05)" : "rgba(255,255,255,0.03)",
+    background: hasError ? "rgba(248,113,113,0.04)" : focused ? "rgba(232,64,138,0.05)" : "rgba(255,255,255,0.03)",
     transition: "border-color 0.2s, background 0.2s, box-shadow 0.2s",
-    boxShadow: focusedField === id ? "0 0 0 4px rgba(232,64,138,0.10)" : "none",
+    boxShadow: hasError ? "0 0 0 4px rgba(248,113,113,0.10)" : focused ? "0 0 0 4px rgba(232,64,138,0.10)" : "none",
     overflow: "hidden",
-  });
+  };
+  };
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
@@ -562,42 +632,84 @@ export default function Home() {
 
       {/* ─── HEADER ─────────────────────────────────────────── */}
       <header
-        className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 md:px-10"
+        className="fixed inset-x-0 top-0 z-50 px-6 md:px-10"
         style={{
-          height: 64,
-          background: "rgba(10,10,10,0.85)",
-          backdropFilter: "blur(16px)",
-          borderBottom: "1px solid rgba(255,255,255,0.05)",
+          height: 68,
+          background: "rgba(10,10,10,0.9)",
+          backdropFilter: "blur(20px)",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}
+        dir="rtl"
       >
-        <button
-          onClick={() => openWhatsApp()}
-          className="flex items-center gap-2 text-sm font-medium transition-colors"
-          style={{ color: "rgba(255,255,255,0.5)" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
-        >
-          <WaIcon className="w-[18px] h-[18px]" />
-          <span>واتساب</span>
-        </button>
+        <div className="h-full max-w-7xl mx-auto flex items-center justify-between gap-6">
 
-        <div style={{ background: "#fff", borderRadius: 10, padding: "4px 10px", lineHeight: 0 }}>
-          <Image
-            src="/cherie-glow-logo.png"
-            alt="Chérie Glow"
-            width={110}
-            height={52}
-            className="object-contain block"
-            unoptimized
-            priority
-          />
+          {/* Logo */}
+          <a href="#" style={{ lineHeight: 0, flexShrink: 0, padding: "6px 10px" }}>
+            <Image
+              src="/cherie-glow-logo.png"
+              alt="Chérie Glow"
+              width={100}
+              height={48}
+              className="object-contain block"
+              unoptimized
+              priority
+            />
+          </a>
+
+          {/* Nav links — desktop only */}
+          <nav className="hidden md:flex items-center gap-1">
+            {[
+              { label: "المنتجات", href: "#products" },
+              { label: "طريقة الاستخدام", href: "#how-to-use" },
+              { label: "الباقة الكاملة", href: "#pack" },
+              { label: "الأسئلة الشائعة", href: "#faq" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.06)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.45)";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Actions */}
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => openWhatsApp()}
+              className="hidden sm:flex items-center gap-2 text-sm font-medium transition-colors"
+              style={{ color: "rgba(255,255,255,0.45)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
+            >
+              <WaIcon className="w-[17px] h-[17px]" />
+              <span>واتساب</span>
+            </button>
+            <a
+              href="#order"
+              className="bg-[#E8408A] text-white font-semibold px-5 py-2 rounded-full text-sm hover:bg-[#d03578] transition-colors whitespace-nowrap"
+            >
+              اطلبي الآن
+            </a>
+          </div>
+
         </div>
       </header>
 
       {/* ─── HERO ────────────────────────────────────────────── */}
       <section
         className="relative flex flex-col items-center justify-center min-h-screen text-center px-6 overflow-hidden"
-        style={{ paddingTop: 64 }}
+        style={{ paddingTop: 68 }}
       >
         <Image
           src="/all-flavours3.png"
@@ -618,22 +730,22 @@ export default function Home() {
 
         <div className="relative z-10 flex flex-col items-center">
           <p
-            className="text-[11px] tracking-[6px] uppercase font-medium mb-10"
+            className="text-[11px] tracking-[6px] uppercase font-medium mb-5 md:mb-10"
             style={{ color: "rgba(255,255,255,0.5)" }}
           >
             Gourmand Collection
           </p>
 
           <h1
-            className="font-bold leading-none tracking-tight mb-6"
-            style={{ fontSize: "clamp(72px, 13vw, 150px)" }}
+            className="font-bold leading-none tracking-tight mb-4 md:mb-6"
+            style={{ fontSize: "clamp(38px, 11vw, 150px)" }}
           >
-            <span className="block text-white"> خلي لحظاتكم الزوجية ألذ...</span>
-            <span className="block" style={{ color: "#E8408A" }}> ما غيشبعش منك..</span>
+            <span className="block text-white">خلي لحظاتكم الزوجية ألذ...</span>
+            <span className="block" style={{ color: "#E8408A" }}>ما غيشبعش منك..</span>
           </h1>
 
           <p
-            className="text-lg md:text-xl max-w-xs mb-12"
+            className="text-base md:text-xl max-w-sm px-2 mb-8 md:mb-12"
             style={{ color: "rgba(255,255,255,0.6)" }}
           >
             نؤمن أن الحب الحقيقي يُبنى على الاهتمام والتقارب اليومي، لذلك صُممت منتجاتنا لتكون رفيقًا لحظاتكم الخاصة
@@ -683,7 +795,7 @@ export default function Home() {
       {/* ─── PACK OFFER ──────────────────────────────────────── */}
       <section
         id="pack"
-        className="flex flex-col md:flex-row min-h-screen border-t border-white/[0.06]"
+        className="flex flex-col md:flex-row md:min-h-screen border-t border-white/[0.06]"
         style={{ direction: "ltr", background: "#0d0d0d" }}
       >
         <div className="relative overflow-hidden w-full md:w-[60%] min-h-[70vw] md:min-h-0">
@@ -703,10 +815,10 @@ export default function Home() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: "linear-gradient(to bottom, #0a0a0a 0%, transparent 12%, transparent 88%, #0a0a0a 100%)" }}
           />
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center px-5 py-4 md:p-0">
             <div
               className="relative overflow-hidden rounded-2xl"
-              style={{ width: "min(80%, 540px)", aspectRatio: "4 / 3", boxShadow: "0 24px 60px rgba(0,0,0,0.6)" }}
+              style={{ width: "min(100%, 540px)", aspectRatio: "4 / 3", boxShadow: "0 24px 60px rgba(0,0,0,0.6)" }}
             >
               <Image
                 src={packOffer.image}
@@ -720,16 +832,16 @@ export default function Home() {
         </div>
 
         <div
-          className="flex flex-col justify-center w-full md:w-[40%] px-8 md:px-14 lg:px-20 py-16 md:py-0"
+          className="flex flex-col justify-center w-full md:w-[40%] px-6 md:px-14 lg:px-20 py-10 md:py-0"
           dir="rtl"
         >
-          <p className="text-[11px] tracking-[5px] uppercase font-medium mb-8" style={{ color: "rgba(255,255,255,0.25)" }}>
+          <p className="text-[11px] tracking-[5px] uppercase font-medium mb-4 md:mb-8" style={{ color: "rgba(255,255,255,0.25)" }}>
             05 &mdash; عرض خاص
           </p>
 
           <h2
-            className="font-bold text-white leading-none mb-6"
-            style={{ fontSize: "clamp(48px, 5.5vw, 80px)" }}
+            className="font-bold text-white leading-none mb-4 md:mb-6"
+            style={{ fontSize: "clamp(40px, 5.5vw, 80px)" }}
           >
             {packOffer.nameAr}
           </h2>
@@ -836,28 +948,15 @@ export default function Home() {
             سنوصّل إليكِ في جميع أنحاء المغرب
           </p>
 
-          {submitted ? (
-            <div
-              className="text-center py-16 rounded-3xl"
-              style={{ border: "1px solid rgba(232,64,138,0.25)", background: "rgba(232,64,138,0.04)" }}
-            >
-              <p className="text-2xl font-semibold mb-3" style={{ color: "#E8408A" }}>
-                تم تسجيل طلبكِ
-              </p>
-              <p style={{ color: "rgba(255,255,255,0.4)" }}>
-                سيتصل بكِ فريقنا قريباً لتأكيد طلبكِ
-              </p>
-            </div>
-          ) : (
-            <div
-              className="rounded-3xl px-8 md:px-12 py-10"
+          <div
+              className="rounded-2xl md:rounded-3xl px-4 md:px-12 py-8 md:py-10"
               style={{ border: "1px solid rgba(232,64,138,0.2)", background: "rgba(232,64,138,0.04)" }}
             >
               <form onSubmit={handleSubmit}>
 
                 {/* ── Offer type tabs ── */}
                 <div
-                  className="flex rounded-2xl p-1 mb-10"
+                  className="flex rounded-2xl p-1 mb-8"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.07)" }}
                 >
                   {(["single", "pack"] as const).map((type) => (
@@ -872,36 +971,49 @@ export default function Home() {
                           : { background: "transparent", color: "rgba(255,255,255,0.35)" }
                       }
                     >
-                      <span className="text-base font-bold">{type === "single" ? "99" : "299"}</span>
+                      <span className="text-base font-bold">
+                        {type === "single"
+                          ? flavors.length > 0 ? `${flavors.length * 99}` : "99"
+                          : "299"}
+                      </span>
                       <span className="text-[11px] tracking-wide mt-0.5 opacity-80">
-                        {type === "single" ? "نكهة واحدة — درهم" : "الباقة الكاملة — درهم"}
+                        {type === "single"
+                          ? flavors.length > 1 ? `${flavors.length} نكهات — درهم` : "نكهة — درهم"
+                          : "الباقة الكاملة — درهم"}
                       </span>
                     </button>
                   ))}
                 </div>
 
-                {/* ── Flavor picker ── */}
+                {/* ── Flavor picker (multi-select) ── */}
                 {offer === "single" && (
-                  <div className="mb-8">
-                    <p className="text-[11px] tracking-[4px] uppercase font-medium mb-4" style={{ color: "rgba(255,255,255,0.3)" }}>
-                      اختاري نكهتكِ
-                    </p>
+                  <div id="field-flavors" className="mb-8">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-[11px] tracking-[4px] uppercase font-medium" style={{ color: "rgba(255,255,255,0.3)" }}>
+                        اختاري النكهات
+                      </p>
+                      {flavors.length > 0 && (
+                        <p className="text-xs font-semibold" style={{ color: "#E8408A" }}>
+                          {flavors.length} {flavors.length === 1 ? "نكهة" : "نكهات"} مختارة
+                        </p>
+                      )}
+                    </div>
                     <div className="grid grid-cols-2 gap-3">
                       {products.map((p) => {
-                        const selected = flavor === p.id;
+                        const selected = flavors.includes(p.id);
                         return (
                           <button
                             key={p.id}
                             type="button"
-                            onClick={() => setFlavor(p.id)}
-                            className="relative flex items-center gap-3 rounded-2xl p-3 text-right transition-all duration-200"
+                            onClick={() => toggleFlavor(p.id)}
+                            className="relative flex items-center gap-2 rounded-2xl p-2.5 text-right transition-all duration-200"
                             style={{
                               border: `1.5px solid ${selected ? "#E8408A" : "rgba(255,255,255,0.08)"}`,
                               background: selected ? "rgba(232,64,138,0.08)" : "rgba(255,255,255,0.02)",
                               boxShadow: selected ? "0 0 0 3px rgba(232,64,138,0.12)" : "none",
                             }}
                           >
-                            <div className="relative shrink-0 rounded-xl overflow-hidden" style={{ width: 52, height: 52 }}>
+                            <div className="relative shrink-0 rounded-xl overflow-hidden" style={{ width: 44, height: 44 }}>
                               <Image src={p.bottleImage} alt={p.nameAr} fill className="object-cover" sizes="52px" />
                             </div>
                             <div className="flex-1 min-w-0">
@@ -909,7 +1021,7 @@ export default function Home() {
                               <p className="text-[11px] mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{p.name}</p>
                             </div>
                             <div
-                              className="shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200"
+                              className="shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200"
                               style={{
                                 borderColor: selected ? "#E8408A" : "rgba(255,255,255,0.18)",
                                 background: selected ? "#E8408A" : "transparent",
@@ -925,15 +1037,26 @@ export default function Home() {
                         );
                       })}
                     </div>
-                    {/* Hidden required field to enforce selection */}
-                    <input type="text" value={flavor} required readOnly tabIndex={-1} style={{ position: "absolute", opacity: 0, pointerEvents: "none", height: 0, width: 0 }} />
+                    {/* Dynamic total */}
+                    {flavors.length > 0 && (
+                      <div
+                        className="mt-4 flex items-center justify-between px-4 py-3 rounded-xl"
+                        style={{ background: "rgba(232,64,138,0.08)", border: "1px solid rgba(232,64,138,0.2)" }}
+                      >
+                        <span className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                          {flavors.length} × 99 درهم
+                        </span>
+                        <span className="font-bold text-white">{flavors.length * 99} درهم</span>
+                      </div>
+                    )}
+                    {errors.flavors && <ErrorMsg msg={errors.flavors} />}
                   </div>
                 )}
 
                 {/* ── Text fields ── */}
                 <div className="flex flex-col gap-4 mb-8">
                   {/* Name */}
-                  <div>
+                  <div id="field-name">
                     <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
                       الاسم الكامل
                     </label>
@@ -941,18 +1064,18 @@ export default function Home() {
                       <input
                         type="text"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: "" })); }}
                         onFocus={() => setFocusedField("name")}
                         onBlur={() => setFocusedField(null)}
-                        required
                         placeholder="أدخلي اسمكِ الكامل"
                         style={inputStyle}
                       />
                     </div>
+                    {errors.name && <ErrorMsg msg={errors.name} />}
                   </div>
 
                   {/* Phone */}
-                  <div>
+                  <div id="field-phone">
                     <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
                       رقم الهاتف
                     </label>
@@ -960,18 +1083,18 @@ export default function Home() {
                       <input
                         type="tel"
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => { setPhone(e.target.value); setErrors((p) => ({ ...p, phone: "" })); }}
                         onFocus={() => setFocusedField("phone")}
                         onBlur={() => setFocusedField(null)}
-                        required
                         placeholder="06XXXXXXXX"
                         style={{ ...inputStyle, direction: "ltr", textAlign: "right" }}
                       />
                     </div>
+                    {errors.phone && <ErrorMsg msg={errors.phone} />}
                   </div>
 
                   {/* City */}
-                  <div>
+                  <div id="field-city">
                     <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
                       المدينة
                     </label>
@@ -979,14 +1102,14 @@ export default function Home() {
                       <input
                         type="text"
                         value={city}
-                        onChange={(e) => setCity(e.target.value)}
+                        onChange={(e) => { setCity(e.target.value); setErrors((p) => ({ ...p, city: "" })); }}
                         onFocus={() => setFocusedField("city")}
                         onBlur={() => setFocusedField(null)}
-                        required
                         placeholder="الدار البيضاء، الرباط، مراكش..."
                         style={inputStyle}
                       />
                     </div>
+                    {errors.city && <ErrorMsg msg={errors.city} />}
                   </div>
                 </div>
 
@@ -1003,7 +1126,6 @@ export default function Home() {
                 </p>
               </form>
             </div>
-          )}
         </div>
       </section>
 
@@ -1014,7 +1136,7 @@ export default function Home() {
       >
         <div
           className="inline-block mb-4"
-          style={{ background: "#fff", borderRadius: 8, padding: "3px 8px", lineHeight: 0, opacity: 0.5 }}
+          style={{ lineHeight: 0, opacity: 0.5 }}
         >
           <Image
             src="/cherie-glow-logo.png"
