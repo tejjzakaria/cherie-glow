@@ -755,7 +755,7 @@ export default function Home() {
             href="#order"
             className="inline-block bg-[#E8408A] text-white font-semibold px-10 py-4 rounded-full text-base hover:bg-[#d03578] transition-colors"
           >
-            اطلبي الآن &mdash; 109 درهم
+            اطلبي الآن &mdash; باك كاملة بـ 279 درهم فقط
           </a>
         </div>
       </section>
@@ -766,30 +766,6 @@ export default function Home() {
       <CtaStrip
         headline={ctaStrips[0].headline}
         subtext={ctaStrips[0].subtext}
-      />
-
-      {/* ─── PRODUCTS ────────────────────────────────────────── */}
-      <div id="products">
-        {products.map((product, i) => (
-          <div key={product.id}>
-            <ProductSection product={product} index={i} onOrder={handleOrder} />
-            {/* CTA between products (after each except the last) */}
-            {i < products.length - 1 && (
-              <CtaStrip
-                headline={ctaStrips[i + 1].headline}
-                subtext={ctaStrips[i + 1].subtext}
-              />
-            )}
-          </div>
-        ))}
-      </div>
-
-      <HowToUse />
-
-      {/* CTA — after products, before pack */}
-      <CtaStrip
-        headline={ctaStrips[4].headline}
-        subtext={ctaStrips[4].subtext}
       />
 
       {/* ─── PACK OFFER ──────────────────────────────────────── */}
@@ -836,7 +812,7 @@ export default function Home() {
           dir="rtl"
         >
           <p className="text-[11px] tracking-[5px] uppercase font-medium mb-4 md:mb-8" style={{ color: "rgba(255,255,255,0.25)" }}>
-            05 &mdash; عرض خاص
+            01 &mdash; عرض خاص
           </p>
 
           <h2
@@ -913,9 +889,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── PRODUCTS ────────────────────────────────────────── */}
+      <div id="products">
+        {products.map((product, i) => (
+          <div key={product.id}>
+            <ProductSection product={product} index={i} onOrder={handleOrder} />
+            {i < products.length - 1 && (
+              <CtaStrip
+                headline={ctaStrips[i + 1].headline}
+                subtext={ctaStrips[i + 1].subtext}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <HowToUse />
+
       <Ingredients />
 
-      {/* CTA — after pack, before form */}
+      {/* CTA — after products, before form */}
       <CtaStrip
         headline={ctaStrips[5].headline}
         subtext={ctaStrips[5].subtext}
