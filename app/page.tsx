@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { products, packOffer, ctaStrips, type Product } from "@/data/products";
 
-const WA_NUMBER = "212600000000";
+const WA_NUMBER = "212764724608";
 
 function openWhatsApp(text?: string) {
   const msg = text ?? "مرحباً، أودّ الطلب من Chérie Glow";
