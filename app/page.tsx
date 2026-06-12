@@ -25,6 +25,303 @@ function WaIcon({ className }: { className?: string }) {
   );
 }
 
+function TrustBar() {
+  const items = [
+    {
+      label: "آمن وقابل للأكل",
+      sub: "مكوّنات طبيعية 100% صالحة للتذوق",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#E8408A" strokeWidth={1.8}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <polyline points="9,12 11,14 15,10" />
+        </svg>
+      ),
+    },
+    {
+      label: "خصوصية كاملة",
+      sub: "تغليف سري وتوصيل خاص",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#E8408A" strokeWidth={1.8}>
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      ),
+    },
+    {
+      label: "الدفع عند الاستلام",
+      sub: "لا دفع مسبق — ادفعي عند الوصول",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#E8408A" strokeWidth={1.8}>
+          <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+          <line x1="1" y1="10" x2="23" y2="10" />
+        </svg>
+      ),
+    },
+    {
+      label: "دعم 24/7",
+      sub: "فريقنا دايما هنا من أجلكِ",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#E8408A" strokeWidth={1.8}>
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <div
+      className="border-y"
+      style={{ background: "#0d0d0d", borderColor: "rgba(255,255,255,0.06)" }}
+      dir="rtl"
+    >
+      <div className="max-w-5xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {items.map((item) => (
+          <div key={item.label} className="flex items-center gap-3">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+              style={{ background: "rgba(232,64,138,0.1)" }}
+            >
+              {item.icon}
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white leading-tight">{item.label}</p>
+              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{item.sub}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function HowToUse() {
+  const steps = [
+    {
+      number: "01",
+      title: "ضعي القطرات",
+      description: "ضعي بضع قطرات على المناطق الحساسة — الصدر، العنق، وأي منطقة تريدين. المنتج آمن وقابل للتذوق تماماً.",
+    },
+    {
+      number: "02",
+      title: "شاركي اللحظة",
+      description: "دعيه يكتشف النكهة والعطر بنفسه — هذه اللحظة المشتركة هي ما يصنع التقارب الحقيقي بينكما.",
+    },
+    {
+      number: "03",
+      title: "استمتعا معاً",
+      description: "ليست مجرد عناية — هي دعوة للاهتمام والتقارب. لحظات تبنيان الحب وتجعلان كلّ يوم استثنائياً.",
+    },
+  ];
+
+  return (
+    <section
+      dir="rtl"
+      style={{ background: "#111111", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+    >
+      <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
+        <p
+          className="text-[11px] tracking-[6px] uppercase font-medium text-center mb-5"
+          style={{ color: "#E8408A" }}
+        >
+          طريقة الاستخدام
+        </p>
+        <h2
+          className="font-bold text-white text-center mb-16 leading-tight"
+          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+        >
+          ثلاث خطوات فقط
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {steps.map((step) => (
+            <div
+              key={step.number}
+              className="rounded-2xl p-8 flex flex-col"
+              style={{
+                background: "rgba(255,255,255,0.02)",
+                border: "1px solid rgba(255,255,255,0.07)",
+              }}
+            >
+              <p
+                className="text-6xl font-bold mb-8 leading-none"
+                style={{ color: "#E8408A", opacity: 0.25 }}
+              >
+                {step.number}
+              </p>
+              <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Ingredients() {
+  const items = [
+    {
+      emoji: "🍯",
+      nameAr: "عسل حر طبيعي",
+      benefit: "يُرطّب البشرة ويُغذّيها بعمق — طعمه حلو وملمسه ناعم، وهو المكوّن الأساسي الذي يجعل كلّ نكهة لذيذة وقابلة للتذوق.",
+    },
+    {
+      emoji: "🍓",
+      nameAr: "فواكه طازجة",
+      benefit: "فراولة، مانجو، وفواكه طبيعية مختارة بعناية — تُعطي كلّ نكهة طابعها الفريد وعطرها المميّز الذي يُغوي الحواس.",
+    },
+    {
+      emoji: "🍫",
+      nameAr: "شوكولاتة ذائبة",
+      benefit: "شوكولاتة طبيعية فاخرة تُضفي غنى وعمقاً على النكهة — دافئة، مُغرية، وآمنة تماماً للتذوق على البشرة.",
+    },
+    {
+      emoji: "🌿",
+      nameAr: "فانيليا نقية",
+      benefit: "لمسة كريمية دافئة تُلطّف البشرة وتُكمل تناسق النكهات — عطر راقٍ يُذكّر بأجمل اللحظات ويُريح الروح.",
+    },
+  ];
+
+  return (
+    <section
+      dir="rtl"
+      style={{ background: "#0d0d0d", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+    >
+      <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
+        <p
+          className="text-[11px] tracking-[6px] uppercase font-medium text-center mb-5"
+          style={{ color: "#E8408A" }}
+        >
+          المكوّنات
+        </p>
+        <h2
+          className="font-bold text-white text-center mb-3 leading-tight"
+          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+        >
+          طبيعية 100%
+        </h2>
+        <p className="text-center text-base mb-16" style={{ color: "rgba(255,255,255,0.4)" }}>
+          كلّ قطرة مصنوعة من خيرة المكوّنات الطبيعية — بدون كيماويات ضارة أو مواد حافظة اصطناعية
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {items.map((item) => (
+            <div
+              key={item.nameAr}
+              className="flex gap-5 rounded-2xl p-6"
+              style={{
+                background: "rgba(255,255,255,0.02)",
+                border: "1px solid rgba(255,255,255,0.07)",
+              }}
+            >
+              <span className="text-4xl shrink-0 leading-none mt-1">{item.emoji}</span>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-2">{item.nameAr}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  {item.benefit}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "هل المنتجات قابلة للأكل وآمنة على البشرة؟",
+      a: "نعم تماماً — هذا هو الفرق الأساسي لـ Chérie Glow. كلّ منتج مصنوع من مكوّنات طبيعية 100% مختارة بعناية، آمنة على البشرة وقابلة للتذوق. لا توجد كيماويات ضارة ولا مواد حافظة اصطناعية.",
+    },
+    {
+      q: "كيف أستخدم المنتج بشكل صحيح؟",
+      a: "ضعي بضع قطرات على المناطق الحساسة كالصدر والعنق وأي منطقة تريدين — ثم شاركي اللحظة مع شريككِ. المنتج مصمّم ليكون تجربة مشتركة بين الزوجين، وليس فقط عطراً شخصياً.",
+    },
+    {
+      q: "هل التوصيل سري؟ كيف يصل الطلب؟",
+      a: "نعم، نضمن خصوصية كاملة. يُوصَّل طلبكِ في تغليف سري محكم لا يكشف عن محتواه. التوصيل لجميع مدن المغرب خلال 24–48 ساعة، والدفع عند الاستلام فقط.",
+    },
+    {
+      q: "هل يمكن استخدامها يومياً؟",
+      a: "بالتأكيد. المكوّنات الطبيعية المُرطّبة تجعلها مثالية للاستخدام اليومي. بل إن الاستخدام المنتظم يُعمّق التقارب بين الزوجين ويجعل كلّ يوم لحظة خاصة.",
+    },
+    {
+      q: "ما الفرق بين النكهات الأربع؟",
+      a: "كلّ نكهة تجربة مختلفة: الفراولة حلوة وأنثوية مُبهجة، المانجو دافئة ومُغرية، الشوكولاتة فاخرة وعميقة، والفانيليا ناعمة وكلاسيكية. جرّبي الباقة الكاملة لتكتشفي أيّها يُلهب أجواءكما أكثر.",
+    },
+  ];
+
+  return (
+    <section
+      dir="rtl"
+      style={{ background: "#111111", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+    >
+      <div className="max-w-3xl mx-auto px-6 py-20 md:py-28">
+        <p
+          className="text-[11px] tracking-[6px] uppercase font-medium text-center mb-5"
+          style={{ color: "#E8408A" }}
+        >
+          الأسئلة الشائعة
+        </p>
+        <h2
+          className="font-bold text-white text-center mb-14 leading-tight"
+          style={{ fontSize: "clamp(36px, 5vw, 56px)" }}
+        >
+          كلّ ما تودّين معرفته
+        </h2>
+        <div className="flex flex-col gap-3">
+          {faqs.map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div
+                key={i}
+                className="rounded-2xl overflow-hidden"
+                style={{
+                  border: `1px solid ${isOpen ? "rgba(232,64,138,0.3)" : "rgba(255,255,255,0.08)"}`,
+                  background: isOpen ? "rgba(232,64,138,0.04)" : "rgba(255,255,255,0.02)",
+                  transition: "border-color 0.2s, background 0.2s",
+                }}
+              >
+                <button
+                  type="button"
+                  className="w-full flex items-center justify-between px-6 py-5 text-right gap-4"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                >
+                  <span className="font-semibold text-white text-sm md:text-base leading-snug">
+                    {faq.q}
+                  </span>
+                  <span
+                    className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center"
+                    style={{
+                      background: isOpen ? "#E8408A" : "rgba(255,255,255,0.08)",
+                      transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+                      transition: "transform 0.25s, background 0.2s",
+                    }}
+                  >
+                    <svg viewBox="0 0 12 12" className="w-3 h-3" fill="none" stroke="white" strokeWidth={2.2}>
+                      <line x1="6" y1="2" x2="6" y2="10" />
+                      <line x1="2" y1="6" x2="10" y2="6" />
+                    </svg>
+                  </span>
+                </button>
+                {isOpen && (
+                  <p className="px-6 pb-6 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    {faq.a}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CtaStrip({ headline, subtext }: { headline: string; subtext?: string }) {
   return (
     <div
@@ -165,9 +462,18 @@ function ProductSection({ product, index, onOrder }: ProductSectionProps) {
           {product.tagline}
         </p>
 
-        <p className="text-base leading-relaxed mb-10" style={{ color: "rgba(255,255,255,0.45)" }}>
+        <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
           {product.description}
         </p>
+
+        <ul className="space-y-2 mb-10">
+          {product.highlights.map((item) => (
+            <li key={item} className="flex items-center gap-3 text-sm font-semibold text-white">
+              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#E8408A" }} />
+              {item}
+            </li>
+          ))}
+        </ul>
 
         <div className="flex items-baseline gap-2 mb-8">
           <span className="text-[42px] font-bold leading-none" style={{ color: "#E8408A" }}>
@@ -213,6 +519,7 @@ export default function Home() {
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleOrder = (productId: string) => {
     setOffer("single");
@@ -229,15 +536,23 @@ export default function Home() {
     setSubmitted(true);
   };
 
-  const inputBase: React.CSSProperties = {
+  const fieldBox = (id: string): React.CSSProperties => ({
+    border: `1.5px solid ${focusedField === id ? "#E8408A" : "rgba(255,255,255,0.09)"}`,
+    borderRadius: 14,
+    background: focusedField === id ? "rgba(232,64,138,0.05)" : "rgba(255,255,255,0.03)",
+    transition: "border-color 0.2s, background 0.2s, box-shadow 0.2s",
+    boxShadow: focusedField === id ? "0 0 0 4px rgba(232,64,138,0.10)" : "none",
+    overflow: "hidden",
+  });
+
+  const inputStyle: React.CSSProperties = {
     width: "100%",
     background: "transparent",
     border: "none",
-    borderBottom: "1px solid rgba(255,255,255,0.12)",
     color: "#ffffff",
-    fontSize: "18px",
+    fontSize: "16px",
     fontFamily: "inherit",
-    padding: "14px 0",
+    padding: "16px 20px",
     outline: "none",
     direction: "rtl",
   };
@@ -313,15 +628,15 @@ export default function Home() {
             className="font-bold leading-none tracking-tight mb-6"
             style={{ fontSize: "clamp(72px, 13vw, 150px)" }}
           >
-            <span className="block text-white">ريحتكِ</span>
-            <span className="block" style={{ color: "#E8408A" }}>سلاحكِ السري</span>
+            <span className="block text-white"> خلي لحظاتكم الزوجية ألذ...</span>
+            <span className="block" style={{ color: "#E8408A" }}> ما غيشبعش منك..</span>
           </h1>
 
           <p
             className="text-lg md:text-xl max-w-xs mb-12"
             style={{ color: "rgba(255,255,255,0.6)" }}
           >
-            دعيهم يتذكرونكِ دون أن تقولي كلمة
+            نؤمن أن الحب الحقيقي يُبنى على الاهتمام والتقارب اليومي، لذلك صُممت منتجاتنا لتكون رفيقًا لحظاتكم الخاصة
           </p>
 
           <a
@@ -332,6 +647,8 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      <TrustBar />
 
       {/* CTA — after hero */}
       <CtaStrip
@@ -355,6 +672,8 @@ export default function Home() {
         ))}
       </div>
 
+      <HowToUse />
+
       {/* CTA — after products, before pack */}
       <CtaStrip
         headline={ctaStrips[4].headline}
@@ -367,19 +686,41 @@ export default function Home() {
         className="flex flex-col md:flex-row min-h-screen border-t border-white/[0.06]"
         style={{ direction: "ltr", background: "#0d0d0d" }}
       >
-        <div className="relative w-full md:w-1/2 min-h-[70vw] md:min-h-0 flex items-center justify-center p-12 md:p-16">
+        <div className="relative overflow-hidden w-full md:w-[60%] min-h-[70vw] md:min-h-0">
           <Image
             src={packOffer.image}
-            alt={packOffer.nameAr}
-            width={520}
-            height={400}
-            className="object-contain w-full"
-            style={{ filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.7))" }}
+            alt=""
+            fill
+            className="object-cover scale-110"
+            style={{ filter: "blur(40px)", opacity: 0.18 }}
+            sizes="60vw"
           />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "linear-gradient(to right, transparent 55%, #0a0a0a 100%)" }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "linear-gradient(to bottom, #0a0a0a 0%, transparent 12%, transparent 88%, #0a0a0a 100%)" }}
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className="relative overflow-hidden rounded-2xl"
+              style={{ width: "min(80%, 540px)", aspectRatio: "4 / 3", boxShadow: "0 24px 60px rgba(0,0,0,0.6)" }}
+            >
+              <Image
+                src={packOffer.image}
+                alt={packOffer.nameAr}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 80vw, 48vw"
+              />
+            </div>
+          </div>
         </div>
 
         <div
-          className="flex flex-col justify-center w-full md:w-1/2 px-8 md:px-14 lg:px-20 py-16 md:py-0"
+          className="flex flex-col justify-center w-full md:w-[40%] px-8 md:px-14 lg:px-20 py-16 md:py-0"
           dir="rtl"
         >
           <p className="text-[11px] tracking-[5px] uppercase font-medium mb-8" style={{ color: "rgba(255,255,255,0.25)" }}>
@@ -397,14 +738,23 @@ export default function Home() {
 
           <p className="text-lg md:text-xl font-semibold text-white mb-4">{packOffer.tagline}</p>
 
-          <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.45)" }}>
+          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
             {packOffer.description}
           </p>
 
-          <ul className="space-y-2 mb-10">
+          <ul className="space-y-2 mb-6">
+            {packOffer.highlights.map((item) => (
+              <li key={item} className="flex items-center gap-3 text-sm font-semibold text-white">
+                <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#E8408A" }} />
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <ul className="space-y-1.5 mb-10">
             {packOffer.includes.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-                <span className="w-1 h-1 rounded-full shrink-0" style={{ background: "#E8408A" }} />
+              <li key={item} className="flex items-center gap-3 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <span className="w-1 h-1 rounded-full shrink-0" style={{ background: "rgba(232,64,138,0.5)" }} />
                 {item}
               </li>
             ))}
@@ -451,11 +801,15 @@ export default function Home() {
         </div>
       </section>
 
+      <Ingredients />
+
       {/* CTA — after pack, before form */}
       <CtaStrip
         headline={ctaStrips[5].headline}
         subtext={ctaStrips[5].subtext}
       />
+
+      <FaqSection />
 
       {/* ─── ORDER FORM ──────────────────────────────────────── */}
       <section
@@ -476,7 +830,7 @@ export default function Home() {
             className="font-bold leading-none text-center mb-4"
             style={{ fontSize: "clamp(52px, 8vw, 88px)" }}
           >
-            تواصلي معنا
+              جاهزة لتتألقي؟
           </h2>
           <p className="text-center text-lg mb-12" style={{ color: "rgba(255,255,255,0.4)" }}>
             سنوصّل إليكِ في جميع أنحاء المغرب
@@ -499,101 +853,152 @@ export default function Home() {
               className="rounded-3xl px-8 md:px-12 py-10"
               style={{ border: "1px solid rgba(232,64,138,0.2)", background: "rgba(232,64,138,0.04)" }}
             >
-              <form onSubmit={handleSubmit} className="space-y-0">
-                {/* Offer selector */}
-                <div className="grid grid-cols-2 gap-3 mb-12">
+              <form onSubmit={handleSubmit}>
+
+                {/* ── Offer type tabs ── */}
+                <div
+                  className="flex rounded-2xl p-1 mb-10"
+                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.07)" }}
+                >
                   {(["single", "pack"] as const).map((type) => (
                     <button
                       key={type}
                       type="button"
                       onClick={() => setOffer(type)}
-                      className="py-5 rounded-2xl text-[14px] font-medium transition-colors border"
+                      className="flex-1 flex flex-col items-center py-4 rounded-xl text-sm font-semibold transition-all duration-200"
                       style={
                         offer === type
-                          ? { background: "#E8408A", borderColor: "#E8408A", color: "#fff" }
-                          : { background: "transparent", borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.45)" }
+                          ? { background: "#E8408A", color: "#fff", boxShadow: "0 4px 20px rgba(232,64,138,0.35)" }
+                          : { background: "transparent", color: "rgba(255,255,255,0.35)" }
                       }
                     >
-                      {type === "single" ? "نكهة واحدة — 99 درهم" : "الباقة الكاملة — 299 درهم"}
+                      <span className="text-base font-bold">{type === "single" ? "99" : "299"}</span>
+                      <span className="text-[11px] tracking-wide mt-0.5 opacity-80">
+                        {type === "single" ? "نكهة واحدة — درهم" : "الباقة الكاملة — درهم"}
+                      </span>
                     </button>
                   ))}
                 </div>
 
-                {/* Flavor */}
+                {/* ── Flavor picker ── */}
                 {offer === "single" && (
-                  <div className="pb-8 mb-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                    <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                      النكهة
-                    </label>
-                    <select
-                      value={flavor}
-                      onChange={(e) => setFlavor(e.target.value)}
-                      required
-                      style={{ ...inputBase, cursor: "pointer" }}
-                    >
-                      <option value="" style={{ background: "#111111" }}>اختاري النكهة</option>
-                      {products.map((p) => (
-                        <option key={p.id} value={p.id} style={{ background: "#111111" }}>
-                          {p.nameAr} &mdash; {p.name}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="mb-8">
+                    <p className="text-[11px] tracking-[4px] uppercase font-medium mb-4" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      اختاري نكهتكِ
+                    </p>
+                    <div className="grid grid-cols-2 gap-3">
+                      {products.map((p) => {
+                        const selected = flavor === p.id;
+                        return (
+                          <button
+                            key={p.id}
+                            type="button"
+                            onClick={() => setFlavor(p.id)}
+                            className="relative flex items-center gap-3 rounded-2xl p-3 text-right transition-all duration-200"
+                            style={{
+                              border: `1.5px solid ${selected ? "#E8408A" : "rgba(255,255,255,0.08)"}`,
+                              background: selected ? "rgba(232,64,138,0.08)" : "rgba(255,255,255,0.02)",
+                              boxShadow: selected ? "0 0 0 3px rgba(232,64,138,0.12)" : "none",
+                            }}
+                          >
+                            <div className="relative shrink-0 rounded-xl overflow-hidden" style={{ width: 52, height: 52 }}>
+                              <Image src={p.bottleImage} alt={p.nameAr} fill className="object-cover" sizes="52px" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-bold text-white text-sm leading-tight">{p.nameAr}</p>
+                              <p className="text-[11px] mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{p.name}</p>
+                            </div>
+                            <div
+                              className="shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200"
+                              style={{
+                                borderColor: selected ? "#E8408A" : "rgba(255,255,255,0.18)",
+                                background: selected ? "#E8408A" : "transparent",
+                              }}
+                            >
+                              {selected && (
+                                <svg viewBox="0 0 10 8" className="w-2.5 h-2.5" fill="none" stroke="white" strokeWidth={2.2}>
+                                  <polyline points="1,4 3.5,6.5 9,1" />
+                                </svg>
+                              )}
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {/* Hidden required field to enforce selection */}
+                    <input type="text" value={flavor} required readOnly tabIndex={-1} style={{ position: "absolute", opacity: 0, pointerEvents: "none", height: 0, width: 0 }} />
                   </div>
                 )}
 
-                {/* Name */}
-                <div className="pb-8 mb-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                  <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                    الاسم الكامل
-                  </label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    placeholder="أدخلي اسمكِ الكامل"
-                    style={inputBase}
-                  />
-                </div>
+                {/* ── Text fields ── */}
+                <div className="flex flex-col gap-4 mb-8">
+                  {/* Name */}
+                  <div>
+                    <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      الاسم الكامل
+                    </label>
+                    <div style={fieldBox("name")}>
+                      <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        onFocus={() => setFocusedField("name")}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                        placeholder="أدخلي اسمكِ الكامل"
+                        style={inputStyle}
+                      />
+                    </div>
+                  </div>
 
-                {/* Phone */}
-                <div className="pb-8 mb-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                  <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                    رقم الهاتف
-                  </label>
-                  <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                    placeholder="06XXXXXXXX"
-                    style={{ ...inputBase, direction: "ltr", textAlign: "right" }}
-                  />
-                </div>
+                  {/* Phone */}
+                  <div>
+                    <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      رقم الهاتف
+                    </label>
+                    <div style={fieldBox("phone")}>
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        onFocus={() => setFocusedField("phone")}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                        placeholder="06XXXXXXXX"
+                        style={{ ...inputStyle, direction: "ltr", textAlign: "right" }}
+                      />
+                    </div>
+                  </div>
 
-                {/* City */}
-                <div className="pb-8 mb-12" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                  <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                    المدينة
-                  </label>
-                  <input
-                    type="text"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    required
-                    placeholder="الدار البيضاء، الرباط، مراكش..."
-                    style={inputBase}
-                  />
+                  {/* City */}
+                  <div>
+                    <label className="block text-[11px] tracking-[4px] uppercase font-medium mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      المدينة
+                    </label>
+                    <div style={fieldBox("city")}>
+                      <input
+                        type="text"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        onFocus={() => setFocusedField("city")}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                        placeholder="الدار البيضاء، الرباط، مراكش..."
+                        style={inputStyle}
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-[#E8408A] text-white font-semibold text-base py-5 rounded-full hover:bg-[#d03578] transition-colors"
+                  className="w-full bg-[#E8408A] text-white font-semibold text-base py-5 rounded-2xl hover:bg-[#d03578] transition-colors"
+                  style={{ boxShadow: "0 8px 32px rgba(232,64,138,0.3)" }}
                 >
                   تأكيد الطلب
                 </button>
 
-                <p className="text-center text-xs mt-6" style={{ color: "rgba(255,255,255,0.2)" }}>
+                <p className="text-center text-xs mt-5" style={{ color: "rgba(255,255,255,0.2)" }}>
                   الدفع عند الاستلام &nbsp;&middot;&nbsp; التوصيل خلال 24&ndash;48 ساعة &nbsp;&middot;&nbsp; لا دفع مسبق
                 </p>
               </form>
