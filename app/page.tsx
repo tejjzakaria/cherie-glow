@@ -574,7 +574,7 @@ export default function Home() {
     }
 
     setErrors({});
-    const total = offer === "pack" ? packOffer.price : flavors.length * 99;
+    const total = offer === "pack" ? packOffer.price : flavors.length * 99 + 30;
     const selectedFlavors =
       offer === "pack"
         ? packOffer.includes.join(", ")
@@ -973,13 +973,16 @@ export default function Home() {
                     >
                       <span className="text-base font-bold">
                         {type === "single"
-                          ? flavors.length > 0 ? `${flavors.length * 99}` : "99"
+                          ? flavors.length > 0 ? `${flavors.length * 99 + 30}` : "129"
                           : "299"}
                       </span>
                       <span className="text-[11px] tracking-wide mt-0.5 opacity-80">
                         {type === "single"
                           ? flavors.length > 1 ? `${flavors.length} نكهات — درهم` : "نكهة — درهم"
                           : "الباقة الكاملة — درهم"}
+                      </span>
+                      <span className="text-[10px] mt-0.5" style={{ opacity: 0.6 }}>
+                        {type === "single" ? "+ 30 درهم توصيل" : "توصيل مجاني"}
                       </span>
                     </button>
                   ))}
@@ -1040,13 +1043,26 @@ export default function Home() {
                     {/* Dynamic total */}
                     {flavors.length > 0 && (
                       <div
-                        className="mt-4 flex items-center justify-between px-4 py-3 rounded-xl"
+                        className="mt-4 flex flex-col gap-1.5 px-4 py-3 rounded-xl"
                         style={{ background: "rgba(232,64,138,0.08)", border: "1px solid rgba(232,64,138,0.2)" }}
                       >
-                        <span className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-                          {flavors.length} × 99 درهم
-                        </span>
-                        <span className="font-bold text-white">{flavors.length * 99} درهم</span>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
+                            {flavors.length} × 99 درهم
+                          </span>
+                          <span className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>{flavors.length * 99} درهم</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>التوصيل</span>
+                          <span className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>30 درهم</span>
+                        </div>
+                        <div
+                          className="flex items-center justify-between pt-1.5 mt-0.5"
+                          style={{ borderTop: "1px solid rgba(232,64,138,0.25)" }}
+                        >
+                          <span className="text-sm font-semibold text-white">المجموع</span>
+                          <span className="font-bold text-white">{flavors.length * 99 + 30} درهم</span>
+                        </div>
                       </div>
                     )}
                     {errors.flavors && <ErrorMsg msg={errors.flavors} />}
@@ -1065,13 +1081,23 @@ export default function Home() {
                         sizes="(max-width: 768px) 100vw, 480px"
                       />
                     </div>
-                    <div className="px-4 pb-4 flex items-center justify-between">
-                      <span className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>
-                        {packOffer.includes.join(" · ")}
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs line-through" style={{ color: "rgba(255,255,255,0.25)" }}>{packOffer.originalPrice} درهم</span>
-                        <span className="font-bold text-base" style={{ color: "#E8408A" }}>{packOffer.price} درهم</span>
+                    <div className="px-4 pb-4 flex flex-col gap-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>
+                          {packOffer.includes.join(" · ")}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs line-through" style={{ color: "rgba(255,255,255,0.25)" }}>{packOffer.originalPrice} درهم</span>
+                          <span className="font-bold text-base" style={{ color: "#E8408A" }}>{packOffer.price} درهم</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <svg viewBox="0 0 16 16" fill="none" style={{ width: 13, height: 13 }}>
+                          <path d="M2 5h9l2 4H4L2 5z" stroke="#4ade80" strokeWidth="1.2" strokeLinejoin="round" />
+                          <circle cx="5" cy="11" r="1.2" fill="#4ade80" />
+                          <circle cx="11" cy="11" r="1.2" fill="#4ade80" />
+                        </svg>
+                        <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>توصيل مجاني</span>
                       </div>
                     </div>
                   </div>
