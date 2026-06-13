@@ -397,6 +397,10 @@ interface ProductSectionProps {
 
 function ProductSection({ product, index, onOrder }: ProductSectionProps) {
   const imageOnLeft = index % 2 === 0;
+  const images = product.images;
+  const [activeImg, setActiveImg] = useState(0);
+  const prev = () => setActiveImg((i) => (i - 1 + images.length) % images.length);
+  const next = () => setActiveImg((i) => (i + 1) % images.length);
 
   return (
     <section
@@ -407,12 +411,12 @@ function ProductSection({ product, index, onOrder }: ProductSectionProps) {
       <div
         className={`relative overflow-hidden w-full md:w-[60%] min-h-[56vw] md:min-h-0 order-1 ${imageOnLeft ? "md:order-1" : "md:order-2"}`}
       >
-        {/* Blurred lips as atmospheric background */}
+        {/* Blurred atmospheric background — tracks active image */}
         <Image
-          src={product.lipsImage}
+          src={images[activeImg]}
           alt=""
           fill
-          className="object-cover scale-110"
+          className="object-cover scale-110 transition-all duration-700"
           style={{ filter: "blur(40px)", opacity: 0.18 }}
           sizes="60vw"
         />
@@ -429,30 +433,97 @@ function ProductSection({ product, index, onOrder }: ProductSectionProps) {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background:
-              "linear-gradient(to bottom, #0a0a0a 0%, transparent 12%, transparent 88%, #0a0a0a 100%)",
+            background: "linear-gradient(to bottom, #0a0a0a 0%, transparent 12%, transparent 88%, #0a0a0a 100%)",
           }}
         />
 
-        {/* Bottle — fixed-size rounded card */}
+        {/* Gallery card */}
         <div className="absolute inset-0 flex items-center justify-center px-5 py-4 md:p-0">
           <div
             className="relative overflow-hidden rounded-2xl"
-            style={{
-              width: "min(100%, 540px)",
-              aspectRatio: "4 / 3",
-              boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
-            }}
+            style={{ width: "min(100%, 540px)", aspectRatio: "4 / 3", boxShadow: "0 24px 60px rgba(0,0,0,0.6)" }}
           >
-            <Image
-              src={product.bottleImage}
-              alt={product.nameAr}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 80vw, 48vw"
-            />
+            {/* Images — all stacked, only active is visible */}
+            {images.map((src, i) => (
+              <Image
+                key={src}
+                src={src}
+                alt={`${product.nameAr} ${i + 1}`}
+                fill
+                className="object-cover transition-opacity duration-500"
+                style={{ opacity: i === activeImg ? 1 : 0 }}
+                sizes="(max-width: 768px) 80vw, 48vw"
+                priority={i === 0}
+              />
+            ))}
+
+            {/* Prev / Next arrows */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={prev}
+                  aria-label="السابق"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110"
+                  style={{ width: 36, height: 36, background: "rgba(0,0,0,0.45)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.12)" }}
+                >
+                  <svg viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" style={{ width: 14, height: 14 }}>
+                    <polyline points="10,3 5,8 10,13" />
+                  </svg>
+                </button>
+                <button
+                  onClick={next}
+                  aria-label="التالي"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110"
+                  style={{ width: 36, height: 36, background: "rgba(0,0,0,0.45)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.12)" }}
+                >
+                  <svg viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" style={{ width: 14, height: 14 }}>
+                    <polyline points="6,3 11,8 6,13" />
+                  </svg>
+                </button>
+              </>
+            )}
+
+            {/* Dot indicators */}
+            {images.length > 1 && (
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveImg(i)}
+                    aria-label={`صورة ${i + 1}`}
+                    className="transition-all duration-300"
+                    style={{
+                      width: i === activeImg ? 20 : 6,
+                      height: 6,
+                      borderRadius: 3,
+                      background: i === activeImg ? "#E8408A" : "rgba(255,255,255,0.35)",
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
+
+        {/* Thumbnail strip */}
+        {images.length > 1 && (
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 px-4 md:hidden">
+            {images.map((src, i) => (
+              <button
+                key={src}
+                onClick={() => setActiveImg(i)}
+                className="relative rounded-lg overflow-hidden transition-all duration-200 shrink-0"
+                style={{
+                  width: 48, height: 48,
+                  border: `2px solid ${i === activeImg ? "#E8408A" : "rgba(255,255,255,0.15)"}`,
+                  opacity: i === activeImg ? 1 : 0.55,
+                }}
+              >
+                <Image src={src} alt="" fill className="object-cover" sizes="52px" />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Text column — always on bottom on mobile, alternates on desktop */}

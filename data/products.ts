@@ -7,6 +7,7 @@ export interface Product {
   highlights: string[];
   price: number;
   bottleImage: string;
+  images: string[];
   lipsImage: string;
 }
 
@@ -37,6 +38,7 @@ export const products: Product[] = [
     ],
     price: 109,
     bottleImage: "/strawberry.png",
+    images: ["/strawberry.png", "/strawberry-2.png", "/strawberry-3.png", "/strawberry-4.png"],
     lipsImage: "/Gemini_Generated_Image_x9u7vix9u7vix9u7.png",
   },
   {
@@ -54,6 +56,7 @@ export const products: Product[] = [
     ],
     price: 109,
     bottleImage: "/mango.png",
+    images: ["/mango.png", "/mango-2.png", "/mango-3.png"],
     lipsImage: "/Gemini_Generated_Image_7rzmhf7rzmhf7rzm.png",
   },
   {
@@ -71,6 +74,7 @@ export const products: Product[] = [
     ],
     price: 109,
     bottleImage: "/chocolat.png",
+    images: ["/chocolat.png", "/chocolat-2.png", "/chocolat-3.png", "/chocolat-4.png"],
     lipsImage: "/Gemini_Generated_Image_dhm80tdhm80tdhm8.png",
   },
   {
@@ -88,6 +92,7 @@ export const products: Product[] = [
     ],
     price: 109,
     bottleImage: "/vanilla.png",
+    images: ["/vanilla.png", "/vanilla-2.png", "/vanilla-3.png"],
     lipsImage: "/Gemini_Generated_Image_e4j4pve4j4pve4j4.png",
   },
 ];
