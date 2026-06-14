@@ -7,6 +7,11 @@ import { products, packOffer, ctaStrips, type Product } from "@/data/products";
 
 const WA_NUMBER = "212764724608";
 
+function fbqTrack(event: string, params?: Record<string, unknown>) {
+  const w = window as Window & { fbq?: (...args: unknown[]) => void };
+  if (typeof w.fbq === "function") w.fbq("track", event, params);
+}
+
 function openWhatsApp(text?: string) {
   const msg = text ?? "مرحباً، أودّ الطلب من Chérie Glow";
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
@@ -614,15 +619,21 @@ export default function Home() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const toggleFlavor = (id: string) =>
+  const toggleFlavor = (id: string) => {
+    if (!flavors.includes(id)) {
+      fbqTrack("AddToCart", { content_ids: [id], content_type: "product", currency: "MAD", value: 99 });
+    }
     setFlavors((prev) => prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]);
+  };
 
   const handleOrder = (productId: string) => {
+    fbqTrack("AddToCart", { content_ids: [productId], content_type: "product", currency: "MAD", value: 99 });
     setOffer("single");
     setFlavors((prev) => prev.includes(productId) ? prev : [...prev, productId]);
   };
 
   const handlePackOrder = () => {
+    fbqTrack("AddToCart", { content_name: "Pack Complet", content_type: "product", currency: "MAD", value: 279 });
     setOffer("pack");
     setFlavors([]);
   };
@@ -646,6 +657,11 @@ export default function Home() {
 
     setErrors({});
     const total = offer === "pack" ? packOffer.price : flavors.length * 99 + 30;
+    fbqTrack("InitiateCheckout", {
+      value: total,
+      currency: "MAD",
+      num_items: offer === "pack" ? packOffer.includes.length : flavors.length,
+    });
     const selectedFlavors =
       offer === "pack"
         ? packOffer.includes.join(", ")

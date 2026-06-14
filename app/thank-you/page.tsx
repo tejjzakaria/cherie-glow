@@ -3,15 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 const WA_NUMBER = "212600000000";
+
+function fbqTrack(event: string, params?: Record<string, unknown>) {
+  const w = window as Window & { fbq?: (...args: unknown[]) => void };
+  if (typeof w.fbq === "function") w.fbq("track", event, params);
+}
 
 function ThankYouContent() {
   const params = useSearchParams();
   const name = params.get("name") ?? "";
   const flavors = params.get("flavors") ?? "";
   const total = params.get("total") ?? "";
+
+  useEffect(() => {
+    fbqTrack("Purchase", { value: parseFloat(total) || 0, currency: "MAD", content_name: flavors });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const waText = `مرحباً، طلبتُ للتو من Chérie Glow — ${flavors} — ${total} درهم. أودّ الاستفسار عن الطلب.`;
 
