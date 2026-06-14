@@ -9,7 +9,14 @@ const WA_NUMBER = "212764724608";
 
 function fbqTrack(event: string, params?: Record<string, unknown>) {
   const w = window as Window & { fbq?: (...args: unknown[]) => void };
-  if (typeof w.fbq === "function") w.fbq("track", event, params);
+  if (typeof w.fbq === "function") {
+    w.fbq("track", event, params);
+  } else {
+    // Pixel not ready yet — retry once after it initializes
+    setTimeout(() => {
+      if (typeof w.fbq === "function") w.fbq("track", event, params);
+    }, 2000);
+  }
 }
 
 function openWhatsApp(text?: string) {
@@ -621,13 +628,15 @@ export default function Home() {
 
   const toggleFlavor = (id: string) => {
     if (!flavors.includes(id)) {
-      fbqTrack("AddToCart", { content_ids: [id], content_type: "product", currency: "MAD", value: 99 });
+      const p = products.find((p) => p.id === id);
+      fbqTrack("AddToCart", { content_ids: [id], content_type: "product", currency: "MAD", value: p?.price ?? 109 });
     }
     setFlavors((prev) => prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]);
   };
 
   const handleOrder = (productId: string) => {
-    fbqTrack("AddToCart", { content_ids: [productId], content_type: "product", currency: "MAD", value: 99 });
+    const p = products.find((p) => p.id === productId);
+    fbqTrack("AddToCart", { content_ids: [productId], content_type: "product", currency: "MAD", value: p?.price ?? 109 });
     setOffer("single");
     setFlavors((prev) => prev.includes(productId) ? prev : [...prev, productId]);
   };

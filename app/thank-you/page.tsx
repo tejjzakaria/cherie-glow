@@ -9,7 +9,13 @@ const WA_NUMBER = "212600000000";
 
 function fbqTrack(event: string, params?: Record<string, unknown>) {
   const w = window as Window & { fbq?: (...args: unknown[]) => void };
-  if (typeof w.fbq === "function") w.fbq("track", event, params);
+  if (typeof w.fbq === "function") {
+    w.fbq("track", event, params);
+  } else {
+    setTimeout(() => {
+      if (typeof w.fbq === "function") w.fbq("track", event, params);
+    }, 2000);
+  }
 }
 
 function ThankYouContent() {
